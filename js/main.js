@@ -10,3 +10,49 @@ let dataGlasses = [
     { id: "G9", src: "./img/g9.jpg", virtualImg: "./img/v9.png", brand: "Coarch", name: "MIDNIGHT VIXEN REMIX", color: "Blue, Black", price: 120, description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit consequatur soluta ad aut laborum amet." }
 ];
 
+const showGlasses = () => {
+  let colArr = dataGlasses.map((glass,index) => { 
+    console.log(glass);
+        return `
+        <div class = "col-4 vglasses__items" onclick="testGlass('${glass.virtualImg}'); showGlassInfo('${index}');">
+        <img class="img-fluid" src="${glass.src}" alt="" />
+        </div>
+        `
+     })
+     document.getElementById("vglassesList").innerHTML = colArr.join("");
+}
+
+showGlasses();
+
+const testGlass = (glass) => {
+   document.getElementById("avatar").innerHTML = `<img src="${glass}" alt="" />`;
+}
+
+window.testGlass = testGlass;
+
+const showGlassInfo = (index) => {
+    let glass = dataGlasses[index];
+    let {brand,name, color, price, description} = glass;
+    document.getElementById("glassesInfo").innerHTML = `
+    <div>
+        <h3>${name} - ${brand} (${color})</h3>
+        <div>
+            <span class = "glassPrice">${price}</span> <span style="color: green">Stocking</span>
+        </div>
+        <p class = "pt-3">${description}</p>
+    </div>
+    `
+    document.querySelector(".vglasses__info").style.display = "block";
+}
+window.showGlassInfo = showGlassInfo;
+
+const removeGlasses = (isRemove) => {
+    if(isRemove){
+        document.querySelector("#avatar img").style.display = "block";
+        document.querySelector(".vglasses__info").style.display = "block";
+    } else{
+        document.querySelector("#avatar img").style.display = "none";
+        document.querySelector(".vglasses__info").style.display = "none";
+    }
+}
+window.removeGlasses = removeGlasses;

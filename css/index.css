@@ -61,3 +61,10 @@ body{
 #glasses{
     transition: all 0.5s;
 }
+
+.vglasses__info .glassPrice{
+    background-color: #ff6861;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
